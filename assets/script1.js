@@ -10,7 +10,7 @@ startBtn.addEventListener('click', function (event) {
 
 // Reference Code 1
 
-let questionTextELm = document.querySelector('#question-text');
+let questionTextElm = document.querySelector('#question-text');
 let previousBtn = document.querySelector('#question-text');
 let nextBtn = document.querySelector('#question-text');
 let answerChoiceList = document.querySelector('');
