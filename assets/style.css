@@ -4,13 +4,20 @@
   box-sizing: border-box;
 }
 
+.show {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
 .container {
   margin: 20rem 10rem;
   padding: 1rem 2rem;
   border: 5px solid #ccc;
   border-radius: 1rem;
   width: 80%;
-  visibility: hidden;
 }
 
 .header-container {
@@ -24,23 +31,23 @@
 }
 
 .landing-page {
-  border: 2px solid black;
+  margin: 20rem 10rem;
+  padding: 1rem 2rem;
+  border: 5px solid black;
   border-radius: 1rem;
   width: 80%;
-  margin: 20rem auto;
-  padding: 1rem 2rem;
   text-align: center;
 }
 
 .quiz-title {
   font-size: 3rem;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  /* font-family: ; */
 }
 
 .start-btn {
   width: 8rem;
   height: 2.5rem;
-  margin-top: 1rem;
+  margin: 1rem;
 }
 
 .quiz-container {

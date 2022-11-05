@@ -7,7 +7,7 @@
 
     <!-- <link rel="stylesheet" href="/assets/style.css" /> -->
     <link rel="stylesheet" href="/assets/style.css" />
-    <script src="/assets/script.js"></script>
+    <script src="/assets/script.js" defer></script>
 
     <title>Coding Quiz for Beginners</title>
   </head>
@@ -17,21 +17,29 @@
       <button class="start-btn">START</button>
     </section>
 
-    <section class="container">
+    <section class="container hidden">
       <header>
         <div class="header-container">
           <h1 class="header-h1">Coding Quiz</h1>
-          <div class="timer">Time remaining: 0:15</div>
+          <div class="timer"></div>
         </div>
       </header>
       <main class="quiz-container">
         <h1 class="questions-header">What does HTML stand for?</h1>
-        <ul class="answer-choices">
-          <li class="answer-items">Answer 1</li>
-          <li class="answer-items">Answer 2</li>
-          <li class="answer-items">Answer 3</li>
-          <li class="answer-items">Answer 4</li>
-        </ul>
+
+        <div class="btn-container">
+          <button class="answer-btn">Answer 1</button>
+          <button class="answer-btn">Answer 2</button>
+          <button class="answer-btn">Answer 3</button>
+          <button class="answer-btn">Answer 4</button>
+        </div>
+
+        <!-- <ul class="answer-choices">
+          <li class="answer-items" type="button">Answer 1</li>
+          <li class="answer-items"></li>
+          <li class="answer-items"></li>
+          <li class="answer-items"></li>
+        </ul> -->
       </main>
       <footer class="footer">
         <h2 class="question-tracker">1 of 5 Questions</h2>
