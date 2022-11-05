@@ -19,14 +19,9 @@ function displayQuestion(item) {
   questionTextElm.textContent = item.question;
 }
 
-displayQuestion(quiz.questions[0]);
-displayQuestion(quiz.questions[1]);
-displayQuestion(quiz.questions[2]);
-displayQuestion(quiz.questions[3]);
-
 function displayQuestion(item) {
   // Swap out the question in the header
-  questionTextELm.textContent = item.question;
+  questionTextElm.textContent = item.question;
 
   // Clear out the old choices
   answerChoiceList.innerHTML = '';
@@ -85,6 +80,11 @@ var quiz = {
     },
   ],
 };
+
+displayQuestion(quiz.questions[0]);
+displayQuestion(quiz.questions[1]);
+displayQuestion(quiz.questions[2]);
+displayQuestion(quiz.questions[3]);
 
 function displayQuestion(item) {
   // Swap out the question in the header
