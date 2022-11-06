@@ -1,13 +1,20 @@
-let startBtn = document.querySelector('.start-btn');
-let quizContainer = document.querySelector('.container');
-let landingPage = document.querySelector('.landing-page');
+const startBtn = document.querySelector('.start-btn');
+const quizContainer = document.querySelector('.container');
+const landingPage = document.querySelector('.landing-page');
+const resultBox = document.querySelector('.result-box');
 let timerElm = document.querySelector('.timer');
+const questionsElm = document.querySelector('.questions');
+const answerBtnElm = document.querySelector('.answer-btn');
 
-let timeRemaining = 31;
+let shuffledQuestions;
+let currentQuestionIndex;
+
+let timeRemaining = 60;
 
 // Start button and timer functionality. Start button hides landing Page and shows the quiz while initalizing the timer.
+startBtn.addEventListener('click', startQuiz);
 
-startBtn.addEventListener('click', function (event) {
+function startQuiz() {
   quizContainer.classList.remove('hidden');
   quizContainer.classList.add('show');
   landingPage.classList.add('hidden');
@@ -20,31 +27,47 @@ startBtn.addEventListener('click', function (event) {
       clearInterval(timerInterval);
     }
   }, 1000);
-});
+
+  (shuffledQuestions = questions.sort(() => Math.random() - 0.5)), (currentQuestionIndex = 0), setNextQuestion();
+}
+
+function setNextQuestion() {
+  showQuestion(shuffledQuestions[currentQuestionIndex]);
+}
+
+function showQuestion(question) {
+  questionsElm.textContent = question.question;
+}
+
+// function selectAnswer() {}
 
 // Quiz
 
-const quiz = {
-  questions: [
-    {
-      question: 'What does CLI stand for?',
-      answer: ' Command Line Interface',
-      choices: ['Common Language Interface', 'Computer Language Intuition', 'Command Line Interface', 'Computer Listening Ideas'],
-    },
-    {
-      question: 'What is HTML stans for?',
-      answer: 'Hyper Text Markup Language',
-      choices: ['Home Tool Markup Language', 'Hyper Text Markup Language', 'Hyperlink and Text Markup Language', 'None of the above'],
-    },
-    {
-      question: 'What implements style to application?',
-      answer: 'CSS',
-      choices: ['HTML', 'JavaScript', 'AWS', 'CSS'],
-    },
-    {
-      question: 'What symbol denotes an id?',
-      answer: '#',
-      choices: ['#', '.', '/', '{'],
-    },
-  ],
-};
+let questions = [
+  {
+    question: 'What does CLI stand for?',
+    answer: ' Command Line Interface',
+    choices: ['Common Language Interface', 'Computer Language Intuition', 'Command Line Interface', 'Computer Listening Ideas'],
+  },
+  {
+    question: 'What is HTML stans for?',
+    answer: 'Hyper Text Markup Language',
+    choices: ['Home Tool Markup Language', 'Hyper Text Markup Language', 'Hyperlink and Text Markup Language', 'None of the above'],
+  },
+  {
+    question: 'What implements style to an application?',
+    answer: 'CSS',
+    choices: ['HTML', 'JavaScript', 'AWS', 'CSS'],
+  },
+  {
+    question: 'What symbol denotes an id?',
+    answer: '#',
+    choices: ['#', '.', '/', '{'],
+  },
+];
+
+// let questionCount = 0;
+
+// function showQuestions() {
+//   const questionText =
+// }

@@ -11,12 +11,15 @@
 
     <title>Coding Quiz for Beginners</title>
   </head>
+
   <body>
+    <!-- Landing page with start button -->
     <section class="landing-page">
       <h1 class="quiz-title">CODING QUIZ</h1>
       <button class="start-btn">START</button>
     </section>
 
+    <!-- Main container with title and timer -->
     <section class="container hidden">
       <header>
         <div class="header-container">
@@ -24,8 +27,10 @@
           <div class="timer"></div>
         </div>
       </header>
+
+      <!-- Quiz container with questions and answer options  -->
       <main class="quiz-container">
-        <h1 class="questions-header">What does HTML stand for?</h1>
+        <h1 class="questions">What does HTML stand for?</h1>
 
         <div class="btn-container">
           <button class="answer-btn">Answer 1</button>
@@ -46,6 +51,15 @@
         <a href="#" class="high-scores">View high scores</a>
         <button class="next-btn">Next</button>
       </footer>
+    </section>
+
+    <section class="result-box" id="hide">
+      <h1 class="result-title">You've completed the Quiz!</h1>
+      <div class="result-score"></div>
+      <div class="result-btn">
+        <button class="restart">Restart Quiz</button>
+        <button class="quit">Quit Quiz</button>
+      </div>
     </section>
   </body>
 </html>
