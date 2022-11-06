@@ -1,4 +1,5 @@
 const startBtn = document.querySelector('.start-btn');
+const nextBtn = document.querySelector('.next-btn');
 const quizContainer = document.querySelector('.container');
 const landingPage = document.querySelector('.landing-page');
 const resultBox = document.querySelector('.result-box');
@@ -13,11 +14,15 @@ let timeRemaining = 60;
 
 // Start button and timer functionality. Start button hides landing Page and shows the quiz while initalizing the timer.
 startBtn.addEventListener('click', startQuiz);
+nextBtn.addEventListener('click', function () {
+  currentQuestionIndex++;
+  setNextQuestion();
+});
 
 function startQuiz() {
+  landingPage.classList.add('hidden');
   quizContainer.classList.remove('hidden');
   quizContainer.classList.add('show');
-  landingPage.classList.add('hidden');
 
   let timerInterval = setInterval(function () {
     timeRemaining--;
@@ -28,7 +33,9 @@ function startQuiz() {
     }
   }, 1000);
 
-  (shuffledQuestions = questions.sort(() => Math.random() - 0.5)), (currentQuestionIndex = 0), setNextQuestion();
+  shuffledQuestions = questions.sort(() => Math.random() - 0.5);
+  currentQuestionIndex = 0;
+  setNextQuestion();
 }
 
 function setNextQuestion() {
@@ -37,13 +44,18 @@ function setNextQuestion() {
 
 function showQuestion(question) {
   questionsElm.textContent = question.question;
+  question.answer.forEach((answer) => {
+    const answerBtn = document.createElement('button');
+    answerBtn.textContent = answer.text;
+    answerBtn.classList.add('answer-btn');
+  });
 }
 
 // function selectAnswer() {}
 
 // Quiz
 
-let questions = [
+const questions = [
   {
     question: 'What does CLI stand for?',
     answer: ' Command Line Interface',
