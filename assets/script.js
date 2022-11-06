@@ -5,7 +5,7 @@ const landingPage = document.querySelector('.landing-page');
 const resultBox = document.querySelector('.result-box');
 let timerElm = document.querySelector('.timer');
 const questionsElm = document.querySelector('.questions');
-const answerBtnElm = document.querySelector('.answer-btn');
+const answerBtnsElm = document.querySelector('.answer-buttons');
 
 let shuffledQuestions;
 let currentQuestionIndex;
@@ -39,47 +39,90 @@ function startQuiz() {
 }
 
 function setNextQuestion() {
+  clearPreviousAnswers();
   showQuestion(shuffledQuestions[currentQuestionIndex]);
 }
 
 function showQuestion(question) {
   questionsElm.textContent = question.question;
-  question.answer.forEach((answer) => {
+  question.answers.forEach((answer) => {
     const answerBtn = document.createElement('button');
     answerBtn.textContent = answer.text;
     answerBtn.classList.add('answer-btn');
+    if (answer.correct) {
+      answerBtn.dataset.correct = answer.correct;
+    }
+    answerBtn.addEventListener('click', selectAnswer);
+    answerBtnsElm.appendChild(answerBtn);
   });
 }
 
-// function selectAnswer() {}
+function clearPreviousAnswers() {
+  while (answerBtnsElm.firstChild) {
+    answerBtnsElm.removeChild(answerBtnsElm.firstChild);
+  }
+}
+
+function selectAnswer(event) {
+  const selectedBtn = event.target;
+  const correct = selectedBtn.dataset.correct;
+  setStatusClass(document.body, correct);
+  Array.from(answerBtnsElm.children).forEach(answerBtn, function () {
+    setStatusClass(answerBtn, answerBtn.dataset.correct);
+  });
+}
+
+function setStatusClass(element, correct) {
+  clearStatusClass(element);
+  if (correct) {
+    element.classList.add('correct');
+  } else {
+    element.classList.remove('wrong');
+  }
+}
+
+function clearStatusClass(element) {
+  element.classList.remove('correct');
+  element.classList.remove('wrong');
+}
 
 // Quiz
 
 const questions = [
   {
     question: 'What does CLI stand for?',
-    answer: ' Command Line Interface',
-    choices: ['Common Language Interface', 'Computer Language Intuition', 'Command Line Interface', 'Computer Listening Ideas'],
+    answers: [
+      { text: 'Common Language Interface', correct: false },
+      { text: 'Computer Language Intuition', correct: false },
+      { text: 'Command Line Interface', correct: true },
+      { text: 'Computer Listening Ideas', correct: false },
+    ],
   },
   {
-    question: 'What is HTML stans for?',
-    answer: 'Hyper Text Markup Language',
-    choices: ['Home Tool Markup Language', 'Hyper Text Markup Language', 'Hyperlink and Text Markup Language', 'None of the above'],
+    question: 'What does HTML stand for?',
+    answers: [
+      { text: 'Home Tool Markup Language', correct: false },
+      { text: 'Hyper Text Markup Language', correct: true },
+      { text: 'Hyperlink and Text Markup Language', correct: false },
+      { text: 'None of the above', correct: false },
+    ],
   },
   {
     question: 'What implements style to an application?',
-    answer: 'CSS',
-    choices: ['HTML', 'JavaScript', 'AWS', 'CSS'],
+    answers: [
+      { text: 'HTML', correct: false },
+      { text: 'JavaScript', correct: false },
+      { text: 'AWS', correct: false },
+      { text: 'CSS', correct: true },
+    ],
   },
   {
     question: 'What symbol denotes an id?',
-    answer: '#',
-    choices: ['#', '.', '/', '{'],
+    answers: [
+      { text: '#', correct: true },
+      { text: '.', correct: false },
+      { text: '/', correct: false },
+      { text: '{', correct: false },
+    ],
   },
 ];
-
-// let questionCount = 0;
-
-// function showQuestions() {
-//   const questionText =
-// }

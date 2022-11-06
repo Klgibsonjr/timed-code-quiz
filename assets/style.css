@@ -81,7 +81,7 @@ body {
   padding: 1em;
 }
 
-.btn-container {
+.answer-buttons {
   display: flex;
   flex-direction: column;
   /* gap: 1rem; */
