@@ -3,14 +3,16 @@ const nextBtn = document.querySelector('.next-btn');
 const quizContainer = document.querySelector('.container');
 const landingPage = document.querySelector('.landing-page');
 const resultBox = document.querySelector('.result-box');
-let timerElm = document.querySelector('.timer');
 const questionsElm = document.querySelector('.questions');
 const answerBtnsElm = document.querySelector('.answer-buttons');
+let timerElm = document.querySelector('.timer');
 
 let shuffledQuestions;
 let currentQuestionIndex;
 
-let timeRemaining = 60;
+let timeRemaining = 61;
+let score;
+let timePenalty = 5;
 
 // Start button and timer functionality. Start button hides landing Page and shows the quiz while initalizing the timer.
 startBtn.addEventListener('click', startQuiz);
@@ -18,6 +20,50 @@ nextBtn.addEventListener('click', function () {
   currentQuestionIndex++;
   setNextQuestion();
 });
+
+const questions = [
+  {
+    question: 'What does CLI stand for?',
+    answers: [
+      { text: 'Common Language Interface', correct: false },
+      { text: 'Computer Language Intuition', correct: false },
+      { text: 'Command Line Interface', correct: true },
+      { text: 'Computer Listening Ideas', correct: false },
+    ],
+  },
+  {
+    question: 'What does HTML stand for?',
+    answers: [
+      { text: 'Home Tool Markup Language', correct: false },
+      { text: 'Hyper Text Markup Language', correct: true },
+      { text: 'Hyperlink and Text Markup Language', correct: false },
+      { text: 'None of the above', correct: false },
+    ],
+  },
+  {
+    question: 'What implements style to an application?',
+    answers: [
+      { text: 'HTML', correct: false },
+      { text: 'JavaScript', correct: false },
+      { text: 'AWS', correct: false },
+      { text: 'CSS', correct: true },
+    ],
+  },
+  {
+    question: 'What symbol denotes an id?',
+    answers: [
+      { text: '#', correct: true },
+      { text: '.', correct: false },
+      { text: '/', correct: false },
+      { text: '{', correct: false },
+    ],
+  },
+];
+
+function setNextQuestion() {
+  clearPreviousAnswers();
+  showQuestion(shuffledQuestions[currentQuestionIndex]);
+}
 
 function startQuiz() {
   landingPage.classList.add('hidden');
@@ -30,17 +76,13 @@ function startQuiz() {
 
     if (timeRemaining === 0) {
       clearInterval(timerInterval);
+      timerElm.textContent = 'Time is up!';
     }
   }, 1000);
 
   shuffledQuestions = questions.sort(() => Math.random() - 0.5);
   currentQuestionIndex = 0;
   setNextQuestion();
-}
-
-function setNextQuestion() {
-  clearPreviousAnswers();
-  showQuestion(shuffledQuestions[currentQuestionIndex]);
 }
 
 function showQuestion(question) {
@@ -87,42 +129,3 @@ function clearStatusClass(element) {
 }
 
 // Quiz
-
-const questions = [
-  {
-    question: 'What does CLI stand for?',
-    answers: [
-      { text: 'Common Language Interface', correct: false },
-      { text: 'Computer Language Intuition', correct: false },
-      { text: 'Command Line Interface', correct: true },
-      { text: 'Computer Listening Ideas', correct: false },
-    ],
-  },
-  {
-    question: 'What does HTML stand for?',
-    answers: [
-      { text: 'Home Tool Markup Language', correct: false },
-      { text: 'Hyper Text Markup Language', correct: true },
-      { text: 'Hyperlink and Text Markup Language', correct: false },
-      { text: 'None of the above', correct: false },
-    ],
-  },
-  {
-    question: 'What implements style to an application?',
-    answers: [
-      { text: 'HTML', correct: false },
-      { text: 'JavaScript', correct: false },
-      { text: 'AWS', correct: false },
-      { text: 'CSS', correct: true },
-    ],
-  },
-  {
-    question: 'What symbol denotes an id?',
-    answers: [
-      { text: '#', correct: true },
-      { text: '.', correct: false },
-      { text: '/', correct: false },
-      { text: '{', correct: false },
-    ],
-  },
-];

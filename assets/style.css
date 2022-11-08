@@ -94,6 +94,14 @@ body {
   margin: 0.5rem;
 }
 
+.correct {
+  background-color: green;
+}
+
+.wrong {
+  background-color: red;
+}
+
 .footer {
   display: flex;
   justify-content: space-between;
