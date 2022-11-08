@@ -22,3 +22,11 @@ Landing page with Start button:
 Quiz in action which a displayed questions
 
 ![Quiz](/assets/images/SCR-20221107-vhw.png)
+
+---
+
+### LINKS
+
+> - Deployed Quiz: https://klgibsonjr.github.io/timed-code-quiz/
+
+> - Github Repository for Quiz: https://github.com/Klgibsonjr/timed-code-quiz
