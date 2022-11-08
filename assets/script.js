@@ -21,6 +21,7 @@ nextBtn.addEventListener('click', function () {
   setNextQuestion();
 });
 
+// Array of questions used for the quiz
 const questions = [
   {
     question: 'What does CLI stand for?',
@@ -60,16 +61,19 @@ const questions = [
   },
 ];
 
+// Clears previous answers when calling the next shuffled question stored in the questions index.
 function setNextQuestion() {
   clearPreviousAnswers();
   showQuestion(shuffledQuestions[currentQuestionIndex]);
 }
 
+// Starts the quiz function
 function startQuiz() {
   landingPage.classList.add('hidden');
   quizContainer.classList.remove('hidden');
   quizContainer.classList.add('show');
 
+  // Sets a timer that counts down once the quiz starts
   let timerInterval = setInterval(function () {
     timeRemaining--;
     timerElm.textContent = 'Time remaining: ' + timeRemaining;
@@ -80,11 +84,13 @@ function startQuiz() {
     }
   }, 1000);
 
+  // Shuffles the questions so each quiz has a unique order of questions
   shuffledQuestions = questions.sort(() => Math.random() - 0.5);
   currentQuestionIndex = 0;
   setNextQuestion();
 }
 
+// Shows the next question and answer choices when the next button is clicked
 function showQuestion(question) {
   questionsElm.textContent = question.question;
   question.answers.forEach((answer) => {
@@ -127,5 +133,3 @@ function clearStatusClass(element) {
   element.classList.remove('correct');
   element.classList.remove('wrong');
 }
-
-// Quiz
